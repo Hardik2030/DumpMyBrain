@@ -1,0 +1,15 @@
+services:
+  db:
+    image: pgvector/pgvector:pg16 # Postgres with Vector support
+    container_name: dumpmybrain-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: hardik2003
+      POSTGRES_DB: thought_db
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
